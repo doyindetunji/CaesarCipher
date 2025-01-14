@@ -28,9 +28,10 @@ public class CaesarCipherBruteForceGUI {
         frame.add(textField);
 
         JTextArea resultArea = new JTextArea();
-        resultArea.setBounds(20, 60, 440, 280);
         resultArea.setEditable(false);
-        frame.add(resultArea);
+        JScrollPane scrollPane = new JScrollPane(resultArea);
+        scrollPane.setBounds(20, 60, 440, 260);
+        frame.add(scrollPane);
 
         JButton button = new JButton("Decrypt");
         button.setBounds(200, 330, 100, 30);
