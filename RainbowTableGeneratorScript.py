@@ -1,3 +1,6 @@
+import hashlib
+import csv
+
 #Top 10 lists of common passwords in 2024 according to Nordpass
 passwords = ["123456", "123456789", "12345678", "password", "qwerty123", "qwerty1", "111111", "12345", "secret", "123123"]
 
