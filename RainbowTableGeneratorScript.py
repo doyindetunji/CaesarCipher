@@ -14,3 +14,15 @@ def sha256sum(password):
 
 #file to save the results
 OutputFile = "RainbowTable.csv"
+
+#Write the result in the csv file
+with open(OutputFile, mode='w', newline='') as file:
+    writer = csv.writer(file)
+    #Write thee header
+    writer.writerow(["Password", "MD5 HASH", "SHA-256 HASH"])
+    
+    #create the hashes and write each row
+    for password in passwords:
+        writer.writerow([password, md5sum(password), sha256sum(password)])
+        
+print("Rainbow Table created successfully in the file: ", OutputFile)
