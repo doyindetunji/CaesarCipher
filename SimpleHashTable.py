@@ -2,10 +2,56 @@ class HashTable:
     def __init__(self, size):
         # Initialize the hash table with a fixed size
         self.size = size
-        self.table = [None] * size
+        #using chaining to handle collisions
+        self.table = [[] for _ in range(size)]
+        
+    def hash(self, key):
+        #sum of ASCII values of the key characters modulo the table size
+        return sum(ord(char) for char in str(key)) % self.size
+    
+    def insert(self, key, value):
+        hash_key = self.hash(key)
+        bucket = self.table[hash_key]
+        for i, (k, v) in enumerate(bucket):
+            if k == key:
+                #update existing key
+                bucket[i] = (key, value)
+                return
+            #insert new key-pvalue pair
+        bucket.append((key, value))
+            
+    def search(self, key):
+        hash_key = self.hash(key)
+        bucket = self.table[hash_key]
+        for k, v in bucket:
+            if k == key:
+                #return value if key is found
+                return v
+            #return None if key is not found
+        return None
+        
+    def delete(self, key):
+        hash_key = self.hash(key)
+        bucket = self.table[hash_key]
+        for i, (k, v) in enumerate(bucket):
+            if k == key:
+                #delete key-value pair
+                del bucket[i]
+                return
+            #key is not found
+        raise KeyError(f"Key {key} not found")
 
-
-
+#Example usage
+ht = HashTable(size=10)
+ht.insert("name", "Doyin")
+ht.insert("age", 30)
+#Search for name and age
+print(ht.search("name"))
+print(ht.search("age"))
+#delete age
+ht.delete("age")
+#search for age after deletion
+print(ht.search("age"))
 
 
 
