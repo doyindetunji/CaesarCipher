@@ -25,9 +25,18 @@ class HashTable:
     def search(self, key):
         #Search for a key in the hash table
         index = self.hash(key)
-        if self.table[index] is None:
-            return None
-        for pair in self.table[index]:
-            if pair[0] == key:
-                return pair[1]
+        if self.table[index] is not None:
+            for pair in self.table[index]:
+                if pair[0] == key:
+                    return pair[1]
+                #if key is not found
         return None
+    
+    def delete(self, key):
+        #delete a key-value pair from the hash table
+        index = self.hash(key)
+        if self.table[index] is not None:
+            for i, pair in enumerate(self.table[index]):
+                if pair[0] == key:
+                    self.table[index].pop(i)
+                    return
