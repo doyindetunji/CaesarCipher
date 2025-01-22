@@ -36,7 +36,47 @@ class HashTable:
         #delete a key-value pair from the hash table
         index = self.hash(key)
         if self.table[index] is not None:
-            for i, pair in enumerate(self.table[index]):
+            for pair in self.table[index]:
                 if pair[0] == key:
-                    self.table[index].pop(i)
-                    return
+                    self.table[index].remove(pair)
+                    #remove empty bucket
+                    if not self.table[index]:
+                        self.table[index] = None
+                    return True
+                #if key is not found
+        return False
+    
+    def display(self):
+        #Display the contents of the hash table
+        for i, bucket in enumerate(self.table):
+            if bucket:
+                print(f"Index {i}: {bucket}")
+            else:
+                print(f"Index {i}: Empty")
+                
+#Example usage
+if __name__ == "__main__":
+    # Create a hash table of size 10
+    hash_table = HashTable(size=10)
+
+    # Insert key-value pairs
+    hash_table.insert("name", "Alice")
+    hash_table.insert("age", 25)
+    hash_table.insert("city", "New York")
+
+    # Display the hash table
+    print("Hash Table:")
+    hash_table.display()
+
+    # Search for a key
+    print("\nSearch for 'name':", hash_table.search("name"))
+    print("Search for 'age':", hash_table.search("age"))
+    print("Search for 'country':", hash_table.search("country"))  # Key not found
+
+    # Delete a key
+    print("\nDeleting 'city'...")
+    hash_table.delete("city")
+    
+    # Display the hash table after deletion
+    print("\nHash Table After Deletion:")
+    hash_table.display()
