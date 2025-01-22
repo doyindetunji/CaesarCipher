@@ -1,5 +1,17 @@
 class HashTable:
     def __init__(self, size):
+        # Initialize the hash table with a fixed size
+        self.size = size
+        self.table = [None] * size
+
+
+
+
+
+
+"""
+class HashTable:
+    def __init__(self, size):
         #Initialize the hash table with a fixed size
         self.size = size
         self.table = [None] * size
@@ -57,26 +69,27 @@ class HashTable:
 #Example usage
 if __name__ == "__main__":
     # Create a hash table of size 10
-    hash_table = HashTable(size=10)
+    hash = HashTable(size=10)
 
     # Insert key-value pairs
-    hash_table.insert("name", "Alice")
-    hash_table.insert("age", 25)
-    hash_table.insert("city", "New York")
+    hash.insert("name", "Alice")
+    hash.insert("age", 25)
+    hash.insert("city", "New York")
 
     # Display the hash table
     print("Hash Table:")
-    hash_table.display()
+    hash.display()
 
     # Search for a key
-    print("\nSearch for 'name':", hash_table.search("name"))
-    print("Search for 'age':", hash_table.search("age"))
-    print("Search for 'country':", hash_table.search("country"))  # Key not found
+    print("\nSearch for 'name':", hash.search("name"))
+    print("Search for 'age':", hash.search("age"))
+    print("Search for 'country':", hash.search("country"))  # Key not found
 
     # Delete a key
     print("\nDeleting 'city'...")
-    hash_table.delete("city")
+    hash.delete("city")
     
     # Display the hash table after deletion
     print("\nHash Table After Deletion:")
-    hash_table.display()
+    hash.display()
+"""
